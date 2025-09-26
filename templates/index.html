@@ -21,11 +21,9 @@
   </h1>
 </div>
 
-<!-- Main Background Video -->
-<video autoplay muted loop playsinline class="bg-video">
-  <source src="{% static 'videos/one.mp4' %}" type="video/mp4">
+<!--div cla
+ Main Background Video -->
 
-</video>
  <!-- index page start from here --> 
 
 
@@ -46,12 +44,34 @@
         </ul>
          
     </div>
-  <button class="btn2">Login/signup </button>
+  <button class="btn2">Book-Slot</button>
 </nav>
-<section class="Home">
-<div class="content">
-  <!--button class="btn"> Book-slot </!--button-->
-</div></section>
+<section class="Home1">
+
+<!--div class="content">
+  <button class="btn"> Book-slot </!--button>
+</div-->
+<div class="forms">
+
+<div class="signup-box">
+    <h2>Book your sheet now</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Mobile no." required>
+      <input type="text" placeholder=" Address" required>
+      <input type="text" placeholder=" Username" required>
+      <input type="password" placeholder="Password" required>
+      <input type="password" placeholder="Confirm Password" required>
+      <button type="submit">Book-Now</button>
+    </form>
+    <p>Already book sheet? <a href="#">My-sheet</a></p>
+  </div>
+</div>
+</section>
+
+<section class="anime" style="width: 100%; height: 7vh; background-color: blue;">
+
+</section>
 
 <JS to hide intro -->
 <script>
@@ -68,15 +88,35 @@
     bg.classList.add("show");      // Background fade in
   }, 2500); // 2.5 sec delay
 });
-document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.querySelector(".menu ul");
 
   toggle.addEventListener("click", () => {
     menu.classList.toggle("show");
-    menu.style.transition="2s ease-in-out";
   });
 });
+
+const signup=document.querySelector(".signup-box");
+const forms=document.querySelector(".forms");
+const btn2=document.querySelector(".btn2");
+let value =1
+ btn2.addEventListener("click" ,()=>{
+ if(value==1){
+   signup.style.opacity="1";
+   forms.style.opacity="1";
+  
+   value=0}
+   else{
+    signup.style.opacity="0";
+    forms.style.opacity="0";
+     signup.style.width="";
+   value=1}
+   }
+   
+ 
+ )
 </script>
 
 </body>
