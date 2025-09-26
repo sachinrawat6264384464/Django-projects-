@@ -1,15 +1,17 @@
+
 *{
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-  }
-
+ body, html {
+  margin:0;
+  padding:0;
+  height:100%;
+  font-family:sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto; /* scroll ke liye */
+}
   /* Intro video */
   #intro {
     position: fixed;
@@ -34,14 +36,9 @@ box-sizing: border-box;
 
   /* Main background video */
   .bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
  
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: -1;
   }
 
   
@@ -58,7 +55,7 @@ box-sizing: border-box;
   .menu-toggle {
   display: none;
   font-size:3rem;
-  color: rgb(11, 169, 189);
+  color: rgb(15, 162, 96);
   cursor: pointer;
   position: relative;
   right: 19%;
@@ -118,8 +115,9 @@ box-sizing: border-box;
  margin-top: 5%;
  margin-right: 6%;
  color: rgb(13, 13, 13);
- background-color: #148fb4;
+ background-color: #14b494;
  border: none;
+ z-index: 13;
  
  }
  .btn2:hover{
@@ -144,23 +142,131 @@ box-shadow: 0 4px 10px 0 rgba(255, 255, 255, 1.8);
 box-shadow: 0 4px 10px 0 rgba(255, 255, 255, 1.8);
 
   }*/
-  
+  /* signup form satrta from heraea */
+.Home1{
+  width: 100%;
+  min-height: 100vh; /* scroll ke liye */
+  background-image: url("{% static 'images/color.jpg' %}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative; /* z-index kaam kare */
+  z-index: 0;
+}
+  .forms{
+  position: relative;
+  bottom: 10%;
+  width: 100%;
+  height: 97vh;
+  opacity: 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+       transition: 2.2s ease-in-out;
+     background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+  }
+   .signup-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      width: 30vw;
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      transition: 2.2s ease-in-out;
+    }
+
+    .signup-box h2 {
+      margin-bottom: 1.5rem;
+      color:rgb(249, 251, 251);
+      font-size: 1.8rem;
+    }
+
+    .signup-box input {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.6rem 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background: rgb(2, 172, 169);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .signup-box input::placeholder {
+      color: #ddd;
+    }
+
+    .signup-box button {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: #14b494;
+      color: #111;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .signup-box button:hover {
+      background: #07b575;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(76, 201, 240, 0.6);
+    }
+
+    .signup-box p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .signup-box p a {
+      color: #4cc9f0;
+      text-decoration: none;
+    }
+
+    .signup-box p a:hover {
+      text-decoration: underline;
+    }
   @media (max-width: 450px) {
-    .menu ul {
-    display: none; /* Hide menu items */
+       .menu ul {
+    display: none;
     flex-direction: column;
-    background: rgba(4, 153, 151, 0.9);
+    background: rgba(4, 153, 151, 0.95);
     position: absolute;
     top: 9vh;
     right: 0;
     width: 60%;
-    color: aliceblue;
     padding: 1rem;
     border-radius: 10px;
-    animation: togo linear 3s ;
-
-  opacity: 0.7;
+   
   }
+
+  .menu ul.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #14b494;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+  }
+
+
 @keyframes togo {
   from{
     transform: translateX(00%);
@@ -171,15 +277,7 @@ box-shadow: 0 4px 10px 0 rgba(255, 255, 255, 1.8);
   
   }
 }
-  .menu ul.show {
-    display: flex; /* Show when toggle clicked */
-  }
-
-  .menu-toggle {
-    display: block;
-   /* Show three dot button */
  
-  }
 
       .bg-video {
     position: fixed;
@@ -208,4 +306,17 @@ margin-left: 1%;
   left: 35%;
   
   }
+  .forms{
+  
+  height: 80vh;
+  }
+  .signup-box{
+  width: 80vw;
+  height: 60vh;
+  }
+   .signup-box h2{
+    font-size: 1.1rem;
+   }
+   .signup-box input {
+   padding: 0.4rem;}
   }
