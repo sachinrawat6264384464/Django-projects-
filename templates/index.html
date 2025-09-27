@@ -47,10 +47,7 @@
   <button class="btn2">Book-Slot</button>
 </nav>
   <section class="section1">
-  <video autoplay muted loop playsinline>
-    <source src="{% static 'videos/one.mp4' %}" type="video/mp4">
-    
-  </video>
+
 
   
 
@@ -61,9 +58,10 @@
 </div-->
 <div class="forms">
 
-<div class="signup-box">
-    <h2>Book your sheet now</h2>
-    <form>
+<div class="signup-box"><div>
+  
+    <form class="form-registration" style="z-index: 30;opacity: 1;">
+      <h2>Book your sheet now</h2>
       <input type="text" placeholder="Full Name" required>
       <input type="text" placeholder="Mobile no." required>
       <input type="text" placeholder=" Address" required>
@@ -71,14 +69,29 @@
       <input type="password" placeholder="Password" required>
       <input type="password" placeholder="Confirm Password" required>
       <button type="submit">Book-Now</button>
+    <p>Already book sheet? <a class="login" href="#">Login</a></p>
+    
     </form>
-    <p>Already book sheet? <a href="#">My-sheet</a></p>
+    
+    </div>
+    
+  
+    <form class="forn-login" style="z-index: 45;position: absolute; top:15%;opacity: 0; ">
+     <div>
+     <h2 style="margin-bottom: 13%;">Login your-self</h2>
+      <input type="text" placeholder=" Username" required style="margin-bottom: 13%;">
+      <input type="password" placeholder="Password" required style="margin-bottom: 13%;">
+      </div>
+      <button type="submit">Login</button>
+      <p style="margin-top:10%;"> Register your self now <a class="register" href="#">Register-now</a></p>
+    </form></div>
+    
   </div>
 </div>
 </div></section>
 
 <div class="scroller" >
-  <marquee   behavior="scroll" direction="left" scrollamount="15" >In the quiet corners of the library, I lose myself, find magic, dream endlessly, and travel through worlds of stories
+  <marquee   behavior="scroll" direction="left" scrollamount="25" >In the quiet corners of the library, I lose myself, find magic, dream endlessly, and travel through worlds of stories
   </marquee>
 
 </div>
@@ -235,6 +248,22 @@ let value =1
    
  
  )
+ 
+ const Register=document.querySelector(".form-registration")
+ const forlogin=document.querySelector(".forn-login")
+ const register=document.querySelector(".register"). addEventListener("click",()=>{
+    forlogin.style.opacity="0";
+    Register.style.opacity="1";
+    
+ 
+ })
+ const login=document.querySelector(".login"). addEventListener("click",()=>{
+    forlogin.style.opacity="1";
+    Register.style.opacity="0";
+    
+ 
+ })
+
 </script>
 
 </body>

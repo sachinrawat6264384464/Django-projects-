@@ -350,14 +350,14 @@ color: #e9ecef;
     
     /* yaha se change hoga video ki background me fix rakhna hin ki nhi */  
 
-    section1 {
+    .section1 {
       position: relative;
       width: 100%;
       height: 100vh; /* full screen height */
       overflow: hidden;
     }
 
-    section video {
+    .section1 video {
       position: absolute;
       top: 20%;
       left: 50%;
