@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: rgb(13, 13, 13);">
 
 <!-- Intro Video -->
 <div id="intro">
@@ -39,14 +39,22 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="#services">Our facilities</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
          
     </div>
   <button class="btn2">Book-Slot</button>
 </nav>
-<section class="Home1">
+  <section class="section1">
+  <video autoplay muted loop playsinline>
+    <source src="{% static 'videos/one.mp4' %}" type="video/mp4">
+    
+  </video>
+
+  
+
+<div class="Home1">
 
 <!--div class="content">
   <button class="btn"> Book-slot </!--button>
@@ -67,11 +75,121 @@
     <p>Already book sheet? <a href="#">My-sheet</a></p>
   </div>
 </div>
+</div></section>
+
+<div class="scroller" >
+  <marquee   behavior="scroll" direction="left" scrollamount="15" >In the quiet corners of the library, I lose myself, find magic, dream endlessly, and travel through worlds of stories
+  </marquee>
+
+</div>
+
+</section>
+<section class="books">
+<h1 style="color: aliceblue; margin-bottom: 5%; margin-top: 5%;">Books Collection</h1>
+<div class="container">
+
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 1">
+    <div class="caption">Caption 1</div>
+  </div>
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 2">
+    <div class="caption">Caption 2</div>
+  </div>
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 3">
+    <div class="caption">Caption 3</div>
+  </div>
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 4">
+    <div class="caption">Caption 4</div>
+  </div>
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 5">
+    <div class="caption">Caption 5</div>
+  </div>
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 6">
+    <div class="caption">Caption 6</div>
+  </div>
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 7">
+    <div class="caption">Caption 7</div>
+  </div>
+  <div class="box">
+    <img src="https://via.placeholder.com/300x200" alt="Image 8">
+    <div class="caption">Caption 8</div>
+  </div>
+</div>
 </section>
 
-<section class="anime" style="width: 100%; height: 7vh; background-color: blue;">
 
-</section>
+
+
+
+
+<div class="map-container">
+    <iframe 
+      loading="lazy" 
+      src="https://maps.google.com/maps?q=Apple%20Hospital%2015%2F1%2C%20Bhawarkua%20Main%20Rd%2C%20Transport%20Nagar%2C%20Indore%2C%20Madhya%20Pradesh%20452008&amp;t=m&amp;z=16&amp;output=embed&amp;iwloc=near" 
+      title="Apple Hospital Location">
+    </iframe>
+  </div>
+
+  
+  
+  
+  
+  
+
+
+
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- About -->
+    <div class="footer-col">
+      <img src="{% static 'images/logo.png' %}" alt="imagelogo">
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">service</a></li>
+      <li><a href="#">Contact </a></li>
+      </ul>
+    </div>
+  <div class="footer-col">
+      <h3>Address</h3>
+      <p> 2nd Flor Near Mahakal hotel Sulakhedi Road, Mangliya , indore</p>
+    </div>
+    
+
+    <!-- Social Media -->
+    
+    <!-- Contact Info -->
+    <div class="footer-col">
+      <h3>Contact Us</h3>
+      <p><strong>Phone:</strong> 8889918922</p>
+    <p><strong>Email:</strong> 
+      <a href="mailto:info@applehospital.co.in">.....</a> | 
+      <a href="mailto:frontoffice@aihrc.in">....</a>
+    </p>
+    
+
+    <!-- Social Media -->
+    
+  </div>
+
+  <!-- Bottom Bar -->
+
+</footer>
+
+
 
 <JS to hide intro -->
 <script>
