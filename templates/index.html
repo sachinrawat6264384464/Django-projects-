@@ -85,7 +85,7 @@
 
 
 <div class="scroller" >
-  <marquee   behavior="scroll" direction="left" scrollamount="25" >In the quiet corners of the library, I lose myself, find magic, dream endlessly, and travel through worlds of stories
+  <marquee   behavior="scroll" direction="left" scrollamount="9" >In the quiet corners of the library, I lose myself, find magic, dream endlessly, and travel through worlds of stories
   </marquee>
 
 </div>
@@ -200,10 +200,15 @@
 
 <JS to hide intro -->
 <script>
-  setTimeout(() => {
-    document.getElementById('intro').style.display = 'none';
-    document.querySelector('.content').style.display = 'block';
-  }, 6000);
+   
+    setTimeout(() => {
+      // Intro hide
+      document.getElementById("intro").style.display = "none";
+      // Main UI show
+      document.getElementById("main-ui").style.display = "block";
+    }, 6000); // 6000ms = 6 seconds
+
+
   window.addEventListener("load", () => {
   const intro = document.getElementById("intro");
   const bg = document.querySelector(".bg-video");
