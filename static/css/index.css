@@ -143,101 +143,7 @@ box-shadow: 0 4px 10px 0 rgba(255, 255, 255, 1.8);
 
   }*/
   /* signup form satrta from heraea */
-.Home1{
-  width: 100%;
-  min-height: 100vh; /* scroll ke liye */
-  background-image: url("{% static 'images/color.jpg' %}");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  position: relative; 
-  bottom: 5%;/* z-index kaam kare */
-  z-index: 0;
-}
-  .forms{
-  position: relative;
-  bottom: 10%;
-  width: 100%;
-  height: 97vh;
-  opacity: 0;
- display: flex;
- align-items: center;
- justify-content: center;
-       transition: 2.2s ease-in-out;
-     background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-  }
-   .signup-box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      width: 30vw;
-      color: #fff;
-      text-align: center;
-      opacity: 0;
-      transition: 2.2s ease-in-out;
-    }
 
-    .signup-box h2 {
-      margin-bottom: 1.5rem;
-      color:rgb(249, 251, 251);
-      font-size: 1.8rem;
-    }
-
-    .signup-box input {
-      width: 100%;
-      padding: 0.8rem;
-      margin: 0.6rem 0;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      background: rgb(2, 172, 169);
-      color: #fff;
-      font-size: 1rem;
-    }
-
-    .signup-box input::placeholder {
-      color: #ddd;
-    }
-
-    .signup-box button {
-      width: 100%;
-      padding: 0.9rem;
-      margin-top: 1rem;
-      border: none;
-      border-radius: 10px;
-      background: #14b494;
-      color: #111;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .signup-box button:hover {
-      background: #07b575;
-      color: #fff;
-      box-shadow: 0 4px 15px rgba(76, 201, 240, 0.6);
-    }
-
-    .signup-box p {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .signup-box p a {
-      color: #4cc9f0;
-      text-decoration: none;
-    }
-
-    .signup-box p a:hover {
-      text-decoration: underline;
-    }
     
     
     
@@ -397,12 +303,103 @@ color: #e9ecef;
     
     
     
-    
-    
-    
-    
-    
-    
+  /* Reset & basics */
+
+
+/* Forms Container */
+/* Forms Container */
+/* Container */
+.forms-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 50px 20px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Forms */
+.forms-container form {
+  background: #1e2a38;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.forms-container form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+}
+
+/* Headings */
+.forms-container h2 {
+  color: #00ff99;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* Inputs */
+.forms-container input {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.forms-container input:focus {
+  box-shadow: 0 0 10px #00ff99;
+  border: 1px solid #00ff99;
+  background-color: #2a3b4d;
+  color: #fff;
+}
+
+/* Buttons */
+.forms-container button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00ff99, #00cc66);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.forms-container button:hover {
+  background: linear-gradient(90deg, #00cc66, #00ff99);
+  transform: scale(1.05);
+}
+
+/* Links */
+.forms-container p {
+  text-align: center;
+  color: #ddd;
+  font-size: 14px;
+}
+
+.forms-container a {
+  color: #00ff99;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.forms-container a:hover {
+  text-decoration: underline;
+}
+
+
     
     
     

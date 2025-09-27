@@ -46,49 +46,43 @@
     </div>
   <button class="btn2">Book-Slot</button>
 </nav>
-  <section class="section1">
+
 
 
   
 
-<div class="Home1">
+<div class="forms-container">
+  <!-- Signup Form -->
+  <form method="post" class="form">
+    {% csrf_token %}
+    <h2>Sign Up</h2>
+    
+    {% if error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+      <p style="color:green;">{{ success }}</p>
+    {% endif %}
 
-<!--div class="content">
-  <button class="btn"> Book-slot </!--button>
-</div-->
-<div class="forms">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="text" name="mobile" placeholder="Mobile No." required>
+    <input type="text" name="address" placeholder="Address" required>
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+    <button type="submit">Sign Up</button>
+  </form>
 
-<div class="signup-box"><div>
-  
-    <form class="form-registration" style="z-index: 30;opacity: 1;">
-      <h2>Book your sheet now</h2>
-      <input type="text" placeholder="Full Name" required>
-      <input type="text" placeholder="Mobile no." required>
-      <input type="text" placeholder=" Address" required>
-      <input type="text" placeholder=" Username" required>
-      <input type="password" placeholder="Password" required>
-      <input type="password" placeholder="Confirm Password" required>
-      <button type="submit">Book-Now</button>
-    <p>Already book sheet? <a class="login" href="#">Login</a></p>
-    
-    </form>
-    
-    </div>
-    
-  
-    <form class="forn-login" style="z-index: 45;position: absolute; top:15%;opacity: 0; ">
-     <div>
-     <h2 style="margin-bottom: 13%;">Login your-self</h2>
-      <input type="text" placeholder=" Username" required style="margin-bottom: 13%;">
-      <input type="password" placeholder="Password" required style="margin-bottom: 13%;">
-      </div>
-      <button type="submit">Login</button>
-      <p style="margin-top:10%;"> Register your self now <a class="register" href="#">Register-now</a></p>
-    </form></div>
-    
-  </div>
+  <!-- Login Form -->
+  <form class="form1">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
 </div>
-</div></section>
+
+
 
 <div class="scroller" >
   <marquee   behavior="scroll" direction="left" scrollamount="25" >In the quiet corners of the library, I lose myself, find magic, dream endlessly, and travel through worlds of stories
@@ -209,7 +203,7 @@
   setTimeout(() => {
     document.getElementById('intro').style.display = 'none';
     document.querySelector('.content').style.display = 'block';
-  }, 1000);
+  }, 6000);
   window.addEventListener("load", () => {
   const intro = document.getElementById("intro");
   const bg = document.querySelector(".bg-video");
@@ -220,49 +214,63 @@
   }, 2500); // 2.5 sec delay
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.querySelector(".menu-toggle");
-  const menu = document.querySelector(".menu ul");
 
-  toggle.addEventListener("click", () => {
-    menu.classList.toggle("show");
-  });
+///const signup=document.querySelector(".signup-box");
+///const forms=document.querySelector(".forms");
+///const btn2=document.querySelector(".btn2");
+///let value =1
+/// btn2.addEventListener("click" ,()=>{
+ ///if(value==1){
+  /// signup.style.opacity="1";
+  ///forms.style.opacity="1"
+  ///signup.style.pointerEvents="none";
+
+   ///value=0}
+   ///else{
+    ///signup.style.opacity="0";
+   ///signup.style.pointerEvents="auto";
+
+     
+   ///value=1}
+   ///})
+ 
+ ///const Register=document.querySelector(".form-registration")
+ ///const forlogin=document.querySelector(".forn-login")
+ ///const register=document.querySelector(".register"). addEventListener("click",()=>{
+  ///  forlogin.style.opacity="0";
+  ///  Register.style.opacity="1";
+    
+ 
+ ///})
+ ///const login=document.querySelector(".login"). addEventListener("click",()=>{
+    ///forlogin.style.opacity="1";
+   /// Register.style.opacity="0";
+    
+ 
+/// })
+// Get elements
+const signupForm = document.querySelector('.form');
+const loginForm = document.querySelector('.form1');
+
+const toggleLogin = document.querySelector('.toggle-login');
+const toggleSignup = document.querySelector('.toggle-signup');
+
+// Show signup by default
+signupForm.classList.add('active');
+
+// Toggle to login
+toggleLogin.addEventListener('click', (e)=>{
+  e.preventDefault();
+  signupForm.classList.remove('active');
+  loginForm.classList.add('active');
 });
 
-const signup=document.querySelector(".signup-box");
-const forms=document.querySelector(".forms");
-const btn2=document.querySelector(".btn2");
-let value =1
- btn2.addEventListener("click" ,()=>{
- if(value==1){
-   signup.style.opacity="1";
-   forms.style.opacity="1";
-  
-   value=0}
-   else{
-    signup.style.opacity="0";
-    forms.style.opacity="0";
-     signup.style.width="";
-   value=1}
-   }
-   
- 
- )
- 
- const Register=document.querySelector(".form-registration")
- const forlogin=document.querySelector(".forn-login")
- const register=document.querySelector(".register"). addEventListener("click",()=>{
-    forlogin.style.opacity="0";
-    Register.style.opacity="1";
-    
- 
- })
- const login=document.querySelector(".login"). addEventListener("click",()=>{
-    forlogin.style.opacity="1";
-    Register.style.opacity="0";
-    
- 
- })
+// Toggle to signup
+toggleSignup.addEventListener('click', (e)=>{
+  e.preventDefault();
+  loginForm.classList.remove('active');
+  signupForm.classList.add('active');
+});
 
 </script>
 

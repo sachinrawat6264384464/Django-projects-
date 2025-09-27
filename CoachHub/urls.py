@@ -20,4 +20,6 @@ from EduTrack.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", index,),
+      # Registration form URL
+    
 ]
