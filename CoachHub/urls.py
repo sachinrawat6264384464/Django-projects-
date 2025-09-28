@@ -18,8 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from EduTrack.views import *
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", index,),
+    path('admin/', admin,name='admin'),
+    path("", index, name='home'),
+    path('login/', login, name='login'),
+    
+    path('signup/', signup, name='signup'),
+     path('logout/', logout, name='logout'),
+]
       # Registration form URL
     
-]
+
