@@ -42,59 +42,47 @@ box-sizing: border-box;
   }
 
   
-  nav{
-  width: 100%;
-
-  height: 9vh;
-  display: flex;
-  align-items: center;
- 
-  justify-content: space-between;
-  
-  }
-  .menu-toggle {
-  display: none;
-  font-size:3rem;
-  color: rgb(15, 162, 96);
-  cursor: pointer;
-  position: relative;
-  right: 19%;
-  bottom: 5%;
-  
+ /* Navbar container */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+    background-color: #1a1a1a; /* dark navbar */
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-  img{
-  margin-top: 4%;
-  margin-left: 5vw;
-  width: 11vw;
-  }
-  .menu{
-  margin-left: 16%;
-  margin-top: 5%;
-  }
-  .menu ul{
-  display: flex;
-   align-items: center;
- justify-content: center;
-  gap: 7rem;
-  }
-   .menu ul li{
-   list-style: none;
-   }
-  
- .menu ul li a{
-  color: azure;
-  list-style: none;
-   transition: all 0.1s ease;;
-   text-decoration: none;
- }
- .menu ul li a:hover{
-  border-bottom: 2px solid #4cc9f0;
-  cursor: pointer;
-  font-size: 1.3rem;
-  font-weight: 800;
- }
- 
- 
+
+/* Logo */
+.navbar .logo {
+    height: 50px;
+}
+
+/* Nav links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem; /* spacing between links */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #00d1ff; /* sky-blue hover */
+}
+
+/* Topbar (login/profile) */
+/* Navbar container */
+
  
  .Home{
  width: 100%;
@@ -108,16 +96,12 @@ box-sizing: border-box;
  margin-top: 41%;
  }
   .btn2{
- width: 9vw;
- font-weight: 600;
- border-radius: 10px;
- height: 6vh;
- margin-top: 5%;
- margin-right: 6%;
+ 
+ top: 5%;
+ left: 80%;
  color: rgb(13, 13, 13);
  background-color: #14b494;
- border: none;
- z-index: 13;
+ 
  
  }
  .btn2:hover{
@@ -201,6 +185,13 @@ box-shadow: 0 4px 10px 0 rgba(255, 255, 255, 1.8);
   @media (max-width: 500px) {
     .box {
       width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .menu ul {
+      width: 45%;
+      gap: 2rem;
     }
   }
 
@@ -309,96 +300,6 @@ color: #e9ecef;
 /* Forms Container */
 /* Forms Container */
 /* Container */
-.forms-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 50px;
-  padding: 50px 20px;
-  flex-wrap: wrap;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Forms */
-.forms-container form {
-  background: #1e2a38;
-  padding: 40px 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.forms-container form:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-}
-
-/* Headings */
-.forms-container h2 {
-  color: #00ff99;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 28px;
-}
-
-/* Inputs */
-.forms-container input {
-  padding: 12px 15px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.forms-container input:focus {
-  box-shadow: 0 0 10px #00ff99;
-  border: 1px solid #00ff99;
-  background-color: #2a3b4d;
-  color: #fff;
-}
-
-/* Buttons */
-.forms-container button {
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #00ff99, #00cc66);
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.forms-container button:hover {
-  background: linear-gradient(90deg, #00cc66, #00ff99);
-  transform: scale(1.05);
-}
-
-/* Links */
-.forms-container p {
-  text-align: center;
-  color: #ddd;
-  font-size: 14px;
-}
-
-.forms-container a {
-  color: #00ff99;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.forms-container a:hover {
-  text-decoration: underline;
-}
-
 
     
     
