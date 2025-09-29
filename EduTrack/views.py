@@ -94,3 +94,6 @@ def logout(request):
     request.session.flush()  # Clear all session data
     return redirect('home')
     
+def studentdata(request):
+    return render(request, 'student_data.html')
+    

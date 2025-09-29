@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Data</title>
+  <style>
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #0d1117; /* Dark */
+  color: #e6edf3;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  color: #ff7b00; /* Orange */
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-shadow: 0 0 8px rgba(255, 123, 0, 0.6);
+}
+
+/* Search & Filter Section */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filters input,
+.filters select,
+.filters button {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.filters input,
+.filters select {
+  background: #161b22;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+}
+
+.filters button {
+  background: #14b494; /* Green */
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  background: #07b575;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(20, 180, 148, 0.8);
+}
+
+/* Table */
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #161b22;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background: #0ab864; /* Orange */
+  color: #111;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+tbody tr {
+  border-bottom: 1px solid #30363d;
+  transition: 0.2s;
+}
+
+tbody tr:hover {
+  background: rgba(20, 180, 148, 0.15);
+}
+
+tbody td {
+  padding: 12px;
+  font-size: 0.95rem;
+}
+
+/* Status */
+.status-active {
+  color: #14b494; /* Green */
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: #f44336; /* Red */
+  font-weight: bold;
+}
+
+/* Action Buttons */
+.actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.actions .edit {
+  background: #4cc9f0; /* Sky Blue */
+  color: #111;
+}
+
+.actions .edit:hover {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.actions .delete {
+  background: #f44336; /* Red */
+  color: #fff;
+}
+
+.actions .delete:hover {
+  background: #d32f2f;
+}
+
+.actions .view {
+  background: #14b494; /* Green */
+  color: #111;
+}
+
+.actions .view:hover {
+  background: #07b575;
+  color: #fff;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #ff7b00;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pagination button:hover {
+  background: #ff9500;
+  color: #fff;
+}
+
+.pagination span {
+  color: #4cc9f0;
+  font-weight: 600;
+}
+
+/* Add Student */
+.add-student {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #14b494, #4cc9f0);
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-student:hover {
+  background: linear-gradient(135deg, #07b575, #0ea5e9);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(76, 201, 240, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  table th, table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+  .actions button {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <h1>Student Management (Admin Panel)</h1>
+
+  <!-- Search & Filter -->
+  <div class="filters">
+    <input type="text" placeholder="Search by Name or Email">
+    
+    <select>
+      <option value="all">All Status</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+    <button>Search</button>
+  </div>
+
+  <!-- Student Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+             <td><input type="checkbox"></td>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Admission Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+       
+          <td>1</td>
+          <td>Rahul Sharma</td>
+          <td>rahul@example.com</td>
+          <td>BCA</td>
+          <td>9876543210</td>
+          <td>2025-09-30</td>
+          <td class="status-active">Active</td>
+          <td class="actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+            <button class="view">View</button>
+          </td>
+        </tr>
+        <tr>
+          
+          <td>2</td>
+          <td>Simran Kaur</td>
+          <td>simran@example.com</td>
+          <td>B.Sc</td>
+          <td>9123456789</td>
+          <td>2025-08-20</td>
+          <td class="status-inactive">Inactive</td>
+          <td class="actions">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+            <button class="view">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button>Prev</button>
+    <span>Page 1 of 10</span>
+    <button>Next</button>
+  </div>
+
+  <!-- Add Student -->
+  <button class="add-student">+ Add New Student</button>
+</body>
+</html>

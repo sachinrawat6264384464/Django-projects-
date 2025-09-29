@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Django Video Background</title>
+  <title>Lakhsya Library</title>
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -135,8 +135,9 @@
 
     <ul class="nav-links">
         <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
         {% if is_admin %}
-  <li><a href="#about">About</a></li>
+  <li><a href="{% url 'studentdata' %}">Students data</a></li>
 {% endif %}
         <li><a href="#services">Facilities</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -156,7 +157,12 @@
   
 </nav>
 
+<section style="height: 60vh; margin-top: 21%;">
+<div class="homeimg" style="margin-top: 2%; width: 100%; height:10vh; display: flex; justify-content: center; align-items: center; object-fit: cover; object-position: center;">
+<img  style="width: 90%; " src="{% static 'images/home.png' %}" alt="Home Image" class="home-image">
 
+</div>
+</section>
 
 
   
@@ -235,7 +241,7 @@
   <div class="footer-container">
 
     <!-- About -->
-    <div class="footer-col">
+    <div class="footer-col" style="margin-right: 15%;">
       <img src="{% static 'images/logo.png' %}" alt="imagelogo">
     </div>
 
