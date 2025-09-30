@@ -107,56 +107,25 @@ tbody td {
   font-size: 0.95rem;
 }
 
-/* Status */
-.status-active {
-  color: #14b494; /* Green */
-  font-weight: bold;
-}
 
-.status-inactive {
-  color: #f44336; /* Red */
-  font-weight: bold;
-}
 
 /* Action Buttons */
-.actions button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  margin: 2px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
 
-.actions .edit {
-  background: #4cc9f0; /* Sky Blue */
-  color: #111;
-}
 
-.actions .edit:hover {
-  background: #0ea5e9;
-  color: #fff;
-}
 
-.actions .delete {
+ .delete {
+ 
+  text-decoration: none;
   background: #f44336; /* Red */
   color: #fff;
+  font-size: 1.4rem;
+  border-radius: 3px;
 }
 
-.actions .delete:hover {
+.delete:hover {
   background: #d32f2f;
 }
 
-.actions .view {
-  background: #14b494; /* Green */
-  color: #111;
-}
-
-.actions .view:hover {
-  background: #07b575;
-  color: #fff;
-}
 
 /* Pagination */
 .pagination {
@@ -230,17 +199,14 @@ tbody td {
   </style>
 </head>
 <body>
+<a href="{% url 'home'%}" style="text-decoration: none; font-size: 3vw; color: white;"> ◀ </a>
   <h1>Student Management (Admin Panel)</h1>
 
   <!-- Search & Filter -->
   <div class="filters">
     <input type="text" placeholder="Search by Name or Email">
     
-    <select>
-      <option value="all">All Status</option>
-      <option value="active">Active</option>
-      <option value="inactive">Inactive</option>
-    </select>
+
     <button>Search</button>
   </div>
 
@@ -249,47 +215,32 @@ tbody td {
     <table>
       <thead>
         <tr>
-             <td><input type="checkbox"></td>
+          
           <th>ID</th>
           <th>Name</th>
-          <th>Email</th>
           <th>Mobile</th>
+          <th>Address</th>
           <th>Admission Date</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-       
-          <td>1</td>
-          <td>Rahul Sharma</td>
-          <td>rahul@example.com</td>
-          <td>BCA</td>
-          <td>9876543210</td>
-          <td>2025-09-30</td>
-          <td class="status-active">Active</td>
-          <td class="actions">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-            <button class="view">View</button>
-          </td>
-        </tr>
-        <tr>
-          
-          <td>2</td>
-          <td>Simran Kaur</td>
-          <td>simran@example.com</td>
-          <td>B.Sc</td>
-          <td>9123456789</td>
-          <td>2025-08-20</td>
-          <td class="status-inactive">Inactive</td>
-          <td class="actions">
-            <button class="edit">Edit</button>
-            <button class="delete">Delete</button>
-            <button class="view">View</button>
-          </td>
-        </tr>
+          {% for student in students %}
+    <tr>
+      <td>{{ student.id }}</td>
+      <td>{{ student.name }}</td>
+      <td>{{ student.mobile }}</td>
+      <td>{{ student.address }}</td>
+      <td>{{ student.username }}</td>
+      <td>{{ student.created_at }}</td>
+      <td>
+      <a class="delete" href="{% url 'delete_student'  student.id  %}" class="btn btn-danger btn-sm">Delete</a>
+
+      </td>
+    </tr>
+    {% endfor %}
+        
       </tbody>
     </table>
   </div>

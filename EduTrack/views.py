@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import UserRegistration,AdminUser
 from django.db import IntegrityError
-
+from django.db import connection
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
@@ -95,5 +95,18 @@ def logout(request):
     return redirect('home')
     
 def studentdata(request):
-    return render(request, 'student_data.html')
+    students = UserRegistration.objects.all()   # saara data fetch
+    return render(request, "student_data.html", {"students": students})
+def studentinfo(request):
+    return render(request, 'student_info.html')
     
+from django.db import connection
+from django.shortcuts import redirect, get_object_or_404
+from .models import UserRegistration
+
+def delete_student(request, id):
+    student = get_object_or_404(UserRegistration, id=id)  
+    student.delete()   # row delete ho jaayega PostgreSQL se
+    return redirect('studentdata')
+
+   
