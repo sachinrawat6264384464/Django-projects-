@@ -25,6 +25,9 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
      path('logout/', logout, name='logout'),
      path('studentdata/', studentdata, name='studentdata'),
+     path('studentinfo/', studentdata, name='studentinfo'),
+     path('delete_student/<int:id>/', delete_student, name='delete_student')
+   
 ]
       # Registration form URL
     
