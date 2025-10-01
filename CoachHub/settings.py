@@ -104,7 +104,9 @@ USE_TZ = True
 # =========================
 # Static & Media files
 # =========================
-STATIC_URL = '/CoachHub/static/'
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]       # dev
 STATIC_ROOT = BASE_DIR / "staticfiles"        # production
 
