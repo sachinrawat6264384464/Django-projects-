@@ -1,22 +1,40 @@
-from pathlib import Path
 import os
 import dj_database_url
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Secret Key (environment variable se)
+# Secret Key
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 
-# Production pe DEBUG False
+# DEBUG
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 # Allowed hosts
-ALLOWED_HOSTS = ["books-room.onrender.com"]
+ALLOWED_HOSTS = ["books-room.onrender.com"]  # Render URL
 
+# DATABASES: Supabase remote Postgres
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f"postgres://{os.getenv('DB_USER','postgres')}:" \
+                f"{os.getenv('DB_PASSWORD','YOUR_PASSWORD')}@" \
+                f"{os.getenv('DB_HOST','db.odbrncozvpukbshkwyvp.supabase.co')}:" \
+                f"{os.getenv('DB_PORT','5432')}/" \
+                f"{os.getenv('DB_NAME','postgres')}",
+        conn_max_age=600,
+        ssl_require=True  # SSL required for Supabase
+    )
+}
 
+# Static files
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Dev
+STATIC_ROOT = BASE_DIR / "staticfiles"    # Production
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
 
-# Installed apps
+# Installed apps & middleware (same as before)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,29 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CoachHub.wsgi.application'
-
-import os
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'postgres'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'sa6264384464'),
-        'HOST': os.getenv('DB_HOST', 'db.odbrncozvpukbshkwyvp.supabase.co'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
-
-
-
-# Static files
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]   # dev ke liye
-STATIC_ROOT = BASE_DIR / "staticfiles"     # production ke liye collectstatic
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"           # uploaded videos/images ke liye
 
 # Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
