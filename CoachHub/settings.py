@@ -10,7 +10,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 # Production pe DEBUG = False
 DEBUG = False  
 
-ALLOWED_HOSTS = ["edutrak.onrender.com", "localhost"]
+ALLOWED_HOSTS = ["*"]  # sab hosts allow karega
+
 
 # Installed Apps
 INSTALLED_APPS = [
