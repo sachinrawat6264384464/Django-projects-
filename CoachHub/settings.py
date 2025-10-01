@@ -104,7 +104,7 @@ USE_TZ = True
 # =========================
 # Static & Media files
 # =========================
-STATIC_URL = '/static/'
+STATIC_URL = '/CoachHub/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]       # dev
 STATIC_ROOT = BASE_DIR / "staticfiles"        # production
 
