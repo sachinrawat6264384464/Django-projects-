@@ -15,8 +15,8 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 # CoachHub/settings.py
 
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'books-room.onrender.com']
 
-ALLOWED_HOSTS = ['books-room.onrender.com']
 
 
 # =========================
