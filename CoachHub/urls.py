@@ -20,7 +20,7 @@ from EduTrack.views import *
 urlpatterns = [
     
     path("", index, name='home'),
-    path('login/', login_user, name='login'),
+    path('login/', login, name='login'),
     path('admin/',  admin_login, name='admin'),
     
     path('signup/', signup, name='signup'),

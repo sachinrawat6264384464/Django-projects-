@@ -35,7 +35,7 @@ def signup(request):
     return render(request, 'signup.html')
 
 # -------- User Login --------
-def login_user(request):
+def login(request):
     if request.method == "POST":
         username = request.POST.get('username').strip()
         password = request.POST.get('password')
