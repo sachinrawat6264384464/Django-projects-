@@ -116,11 +116,8 @@ USE_TZ = True
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]       # dev
-STATIC_ROOT = BASE_DIR / "staticfiles"        # production
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # extra static folder
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 
 # =========================
 # Default primary key
