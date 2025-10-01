@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security
 # =========================
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "c2e6e1c108011290a3566bf7854d63bd")
-DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
+DEBUG = os.getenv("DJANGO_DEBUG", "True") == "False"
 ALLOWED_HOSTS = ["books-room.onrender.com", "localhost", "127.0.0.1"]
 
 # =========================
