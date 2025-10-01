@@ -60,10 +60,10 @@ WSGI_APPLICATION = 'CoachHub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'myuser',
-        'PASSWORD': 'sa626438',
-        'HOST': 'db.render.com',
+        'NAME': 'postgres',   # DB name
+        'USER': 'postgres',   # DB user
+        'PASSWORD': 'sa6264384464',
+        'HOST': 'db.odbrncozvpukbshkwyvp.supabase.co',  # Direct connection host
         'PORT': '5432',
     }
 }
