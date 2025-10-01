@@ -11,7 +11,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 # Allowed hosts
-ALLOWED_HOSTS = ["django-pro-6jcc.onrender.com", "www.django-pro-6jcc.onrender.com"]
+ALLOWED_HOSTS = ["django-pro-6jcc.onrender.com"]
+
 
 
 # Installed apps
@@ -57,12 +58,16 @@ WSGI_APPLICATION = 'CoachHub.wsgi.application'
 
 # Database
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'sa626438',
+        'HOST': 'db.render.com',
+        'PORT': '5432',
+    }
 }
+
 
 # Static files
 STATIC_URL = '/static/'
