@@ -4,16 +4,16 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Secret Key
+# Secret Key (environment variable se)
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 
-# Production pe DEBUG = False
-DEBUG = False  
+# Production pe DEBUG False
+DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*"]  # sab hosts allow karega
+# Allowed hosts
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
-
-# Installed Apps
+# Installed apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,7 +39,7 @@ ROOT_URLCONF = 'CoachHub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -54,21 +54,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CoachHub.wsgi.application'
 
-import dj_database_url
-import os
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+# Database
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),  # must come from environment variable
+        default=os.environ.get("DATABASE_URL"),
         conn_max_age=600,
         ssl_require=True
     )
 }
-
-
 
 # Static files
 STATIC_URL = '/static/'
@@ -78,6 +71,5 @@ STATIC_ROOT = BASE_DIR / "staticfiles"     # production ke liye collectstatic
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"           # uploaded videos/images ke liye
 
-
-# Default PK
+# Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
