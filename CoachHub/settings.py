@@ -54,13 +54,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'CoachHub.wsgi.application'
 
 import dj_database_url
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgresql://coachhub_user:8lW0tYJ30jp5GLYvVKLazCy3QuBTHvnM@dpg-d3ed6pripnbc73bp4j1g-a.oregon-postgres.render.com/coachhub",
-     
+        default=os.environ.get("DATABASE_URL"),  # must come from environment variable
+        conn_max_age=600,
+        ssl_require=True
     )
 }
+
 
 
 # Static files
