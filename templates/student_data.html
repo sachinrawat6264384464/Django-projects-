@@ -1,258 +1,109 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Data</title>
-  <style>
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Management (Admin Panel)</title>
+<style>
 body {
-  font-family: "Poppins", sans-serif;
-  background: #0d1117; /* Dark */
-  color: #e6edf3;
-  min-height: 100vh;
-  padding: 20px;
+    font-family: "Poppins", sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    padding: 20px;
 }
-
-/* Heading */
 h1 {
-  text-align: center;
-  color: #ff7b00; /* Orange */
-  margin-bottom: 20px;
-  font-size: 2rem;
-  text-shadow: 0 0 8px rgba(255, 123, 0, 0.6);
+    text-align: center;
+    color: #ff7b00;
+    margin-bottom: 20px;
 }
-
-/* Search & Filter Section */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.filters input,
-.filters select,
-.filters button {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  font-size: 0.95rem;
-}
-
-.filters input,
-.filters select {
-  background: #161b22;
-  color: #e6edf3;
-  border: 1px solid #30363d;
-}
-
-.filters button {
-  background: #14b494; /* Green */
-  color: #111;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.filters button:hover {
-  background: #07b575;
-  color: #fff;
-  box-shadow: 0 0 10px rgba(20, 180, 148, 0.8);
-}
-
-/* Table */
 .table-container {
-  overflow-x: auto;
+    overflow-x: auto;
 }
-
 table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #161b22;
-  border-radius: 8px;
-  overflow: hidden;
+    width: 100%;
+    border-collapse: collapse;
+    background: #161b22;
+    border-radius: 8px;
 }
-
 thead {
-  background: #0ab864; /* Orange */
-  color: #111;
+    background: #0ab864;
+    color: #111;
 }
-
-thead th {
-  padding: 12px;
-  text-align: left;
-  font-size: 1rem;
+thead th, tbody td {
+    padding: 12px;
+    text-align: left;
 }
-
-tbody tr {
-  border-bottom: 1px solid #30363d;
-  transition: 0.2s;
-}
-
 tbody tr:hover {
-  background: rgba(20, 180, 148, 0.15);
+    background: rgba(20, 180, 148, 0.15);
 }
-
-tbody td {
-  padding: 12px;
-  font-size: 0.95rem;
+a.delete {
+    text-decoration: none;
+    background: #f44336;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
 }
-
-
-
-/* Action Buttons */
-
-
-
- .delete {
- 
-  text-decoration: none;
-  background: #f44336; /* Red */
-  color: #fff;
-  font-size: 1.4rem;
-  border-radius: 3px;
+a.delete:hover {
+    background: #d32f2f;
 }
-
-.delete:hover {
-  background: #d32f2f;
-}
-
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-  gap: 10px;
-}
-
-.pagination button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 6px;
-  background: #ff7b00;
-  color: #111;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.pagination button:hover {
-  background: #ff9500;
-  color: #fff;
-}
-
-.pagination span {
-  color: #4cc9f0;
-  font-weight: 600;
-}
-
-/* Add Student */
 .add-student {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  border-radius: 6px;
-  border: none;
-  font-size: 1rem;
-  background: linear-gradient(135deg, #14b494, #4cc9f0);
-  color: #111;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+    display: block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #14b494, #4cc9f0);
+    color: #111;
+    font-weight: bold;
+    text-align: center;
+    width: 200px;
+    cursor: pointer;
 }
-
 .add-student:hover {
-  background: linear-gradient(135deg, #07b575, #0ea5e9);
-  color: #fff;
-  box-shadow: 0 0 15px rgba(76, 201, 240, 0.6);
+    background: linear-gradient(135deg, #07b575, #0ea5e9);
+    color: #fff;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-  .filters {
-    flex-direction: column;
-    align-items: center;
-  }
-  table th, table td {
-    font-size: 0.8rem;
-    padding: 8px;
-  }
-  .actions button {
-    padding: 4px 8px;
-    font-size: 0.8rem;
-  }
-}
-  </style>
+</style>
 </head>
 <body>
-<a href="{% url 'home'%}" style="text-decoration: none; font-size: 3vw; color: white;"> ◀ </a>
-  <h1>Student Management (Admin Panel)</h1>
+<a href="{% url 'home' %}" style="text-decoration: none; font-size: 2rem; color: white;">◀ Home</a>
+<h1>Student Management (Admin Panel)</h1>
 
-  <!-- Search & Filter -->
-  <div class="filters">
-    <input type="text" placeholder="Search by Name or Email">
-    
-
-    <button>Search</button>
-  </div>
-
-  <!-- Student Table -->
-  <div class="table-container">
-    <table>
-      <thead>
+<div class="table-container">
+<table>
+    <thead>
         <tr>
-          
-          <th>ID</th>
-          <th>Name</th>
-          <th>Mobile</th>
-          <th>Address</th>
-          <th>Admission Date</th>
-          <th>Status</th>
-          <th>Actions</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Username</th>
+            <th>Admission Date</th>
+            <th>Actions</th>
         </tr>
-      </thead>
-      <tbody>
-          {% for student in students %}
-    <tr>
-      <td>{{ student.id }}</td>
-      <td>{{ student.name }}</td>
-      <td>{{ student.mobile }}</td>
-      <td>{{ student.address }}</td>
-      <td>{{ student.username }}</td>
-      <td>{{ student.created_at }}</td>
-      <td>
-      <a class="delete" href="{% url 'delete_student'  student.id  %}" class="btn btn-danger btn-sm">Delete</a>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.mobile }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.username }}</td>
+            <td>{{ student.created_at|date:"d M Y H:i" }}</td>
+            <td>
+                <a href="{% url 'delete_student' student.id %}" class="delete">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" style="text-align:center;">No students found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
 
-      </td>
-    </tr>
-    {% endfor %}
-        
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Pagination -->
-  <div class="pagination">
-    <button>Prev</button>
-    <span>Page 1 of 10</span>
-    <button>Next</button>
-  </div>
-
-  <!-- Add Student -->
-  <button class="add-student">+ Add New Student</button>
+<a href="{% url 'add_student' %}" class="add-student">+ Add New Student</a>
 </body>
 </html>
