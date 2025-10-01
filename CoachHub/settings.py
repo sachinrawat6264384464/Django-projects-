@@ -11,7 +11,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 # Allowed hosts
-ALLOWED_HOSTS = ["lakshya-library-world.onrender.com"]
+ALLOWED_HOSTS = ["django-pro-6jcc.onrender.com", "www.django-pro-6jcc.onrender.com"]
+
 
 # Installed apps
 INSTALLED_APPS = [
