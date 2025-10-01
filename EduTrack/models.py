@@ -6,11 +6,11 @@ class UserRegistration(models.Model):
     name = models.CharField(max_length=100)
     mobile = models.CharField(max_length=15)
     address = models.TextField()
-    add = models.IntegerField(default=0)
+   
     username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=255)  # store hashed password
     created_at = models.DateTimeField(default=timezone.now)
-    dummy_field = models.CharField(max_length=10, default='x')
+  
    
 
     # Methods for password hashing/checking
@@ -31,7 +31,7 @@ class AdminUser(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(default=timezone.now)
     
-    dummy_field = models.CharField(max_length=10, default='x')
+   
 
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
