@@ -16,7 +16,7 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'books-room.onrender.com']
+ALLOWED_HOSTS = ['books-room.onrender.com']
 
 
 # =========================
@@ -76,8 +76,8 @@ import dj_database_url
 import os
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
+    "default": dj_database_url.config(
+        default="postgresql://postgres:password@db.odbrncozvpukbshkwyvp.supabase.co:5432/postgres",
         conn_max_age=600,
         ssl_require=True
     )
