@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect
-from .models import UserRegistration,AdminUser
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import UserRegistration, AdminUser
 from django.db import IntegrityError
-from django.db import connection
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
+# -------- User Signup --------
 def signup(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -27,7 +26,7 @@ def signup(request):
                 address=address,
                 username=username
             )
-            user.set_password(password)  # 🔑 Hash password before saving
+            user.set_password(password)  # 🔑 Hash password
             user.save()
             return render(request, 'signup.html', {'success': 'User registered successfully!'})
         except IntegrityError:
@@ -35,11 +34,8 @@ def signup(request):
 
     return render(request, 'signup.html')
 
-
-
-
-
-def login(request):
+# -------- User Login --------
+def login_user(request):
     if request.method == "POST":
         username = request.POST.get('username').strip()
         password = request.POST.get('password')
@@ -50,63 +46,56 @@ def login(request):
             return render(request, 'login.html', {'error': 'Invalid username or password'})
 
         if user.check_password(password):
-            # set manual session
             request.session['user_id'] = user.id
             request.session['username'] = user.username
-            return redirect('home')  # index page
+            request.session['is_admin'] = False
+            return redirect('home')
         else:
             return render(request, 'login.html', {'error': 'Invalid username or password'})
 
     return render(request, 'login.html')
-from django.shortcuts import render, redirect
-from .models import AdminUser
 
-def admin(request):
+# -------- Admin Login --------
+def admin_login(request):
     if request.method == "POST":
         username = request.POST.get('username').strip()
         password = request.POST.get('password')
 
         try:
-            user = AdminUser.objects.get(username=username)
+            admin = AdminUser.objects.get(username=username)
         except AdminUser.DoesNotExist:
             return render(request, 'admin.html', {'error': 'Invalid username or password'})
 
-        if user.check_password(password):
-            # set manual session
-            request.session['user_id'] = user.id
-            request.session['username'] = user.username
-            request.session['is_admin'] = True  # 👈 ye flag add karo
+        if admin.check_password(password):
+            request.session['user_id'] = admin.id
+            request.session['username'] = admin.username
+            request.session['is_admin'] = True
             return redirect('home')
         else:
             return render(request, 'admin.html', {'error': 'Invalid username or password'})
 
     return render(request, 'admin.html')
 
+# -------- Home Page --------
 def index(request):
     context = {
         'username': request.session.get('username'),
-        'is_admin': request.session.get('is_admin', False)  # default False
+        'is_admin': request.session.get('is_admin', False)
     }
     return render(request, 'index.html', context)
 
-
-def logout(request):
-    request.session.flush()  # Clear all session data
+# -------- Logout --------
+def logout_view(request):
+    request.session.flush()
     return redirect('home')
-    
+
+# -------- Student Data (Admin) --------
 def studentdata(request):
-    students = UserRegistration.objects.all()   # saara data fetch
-    return render(request, "student_data.html", {"students": students})
-def studentinfo(request):
-    return render(request, 'student_info.html')
-    
-from django.db import connection
-from django.shortcuts import redirect, get_object_or_404
-from .models import UserRegistration
+    students = UserRegistration.objects.all()
+    return render(request, 'student_data.html', {'students': students})
 
+# -------- Delete Student --------
 def delete_student(request, id):
-    student = get_object_or_404(UserRegistration, id=id)  
-    student.delete()   # row delete ho jaayega PostgreSQL se
+    student = get_object_or_404(UserRegistration, id=id)
+    student.delete()
     return redirect('studentdata')
-
-   
