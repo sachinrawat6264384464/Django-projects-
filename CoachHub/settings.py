@@ -11,7 +11,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 # Allowed hosts
-ALLOWED_HOSTS = ["django-pro-6jcc.onrender.com"]
+ALLOWED_HOSTS = ["books-room.onrender.com"]
+
 
 
 
