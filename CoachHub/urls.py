@@ -20,10 +20,11 @@ from EduTrack.views import *
 urlpatterns = [
     path('admin/', admin,name='admin'),
     path("", index, name='home'),
-    path('login/', login, name='login'),
+    path('login/', login_user, name='login'),
+    path('admin_login/',  admin_login, name='admin'),
     
     path('signup/', signup, name='signup'),
-     path('logout/', logout, name='logout'),
+     path('logout/',  logout_view, name='logout'),
      path('studentdata/', studentdata, name='studentdata'),
      path('studentinfo/', studentdata, name='studentinfo'),
      path('delete_student/<int:id>/', delete_student, name='delete_student')
