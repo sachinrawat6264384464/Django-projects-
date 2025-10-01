@@ -53,10 +53,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CoachHub.wsgi.application'
 
-# ✅ Database: Render ka PostgreSQL
+import dj_database_url
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        default="postgresql://coachhub_user:8lW0tYJ30jp5GLYvVKLazCy3QuBTHvnM@dpg-d3ed6pripnbc73bp4j1g-a.oregon-postgres.render.com/coachhub",
         conn_max_age=600
     )
 }
