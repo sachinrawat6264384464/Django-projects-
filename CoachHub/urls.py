@@ -1,35 +1,12 @@
-"""
-URL configuration for CoachHub project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
 from django.urls import path
-from EduTrack.views import *
-urlpatterns = [
-    path('admin/', admin,name='admin'),
-    path("", index, name='home'),
-    path('login/', login_user, name='login'),
-    path('admin_login/',  admin_login, name='admin'),
-    
-    path('signup/', signup, name='signup'),
-     path('logout/',  logout_view, name='logout'),
-     path('studentdata/', studentdata, name='studentdata'),
-     path('studentinfo/', studentdata, name='studentinfo'),
-     path('delete_student/<int:id>/', delete_student, name='delete_student')
-   
-]
-      # Registration form URL
-    
+from . import views
 
+urlpatterns = [
+    path('', views.index, name='home'),
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login_user, name='login'),
+    path('admin/', views.admin_login, name='admin'),
+    path('logout/', views.logout_view, name='logout'),
+    path('students/', views.studentdata, name='studentdata'),
+    path('students/delete/<int:id>/', views.delete_student, name='delete_student'),
+]
