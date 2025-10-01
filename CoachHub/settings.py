@@ -12,7 +12,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "c2e6e1c108011290a3566bf7854d63bd")
 DEBUG = os.getenv("DJANGO_DEBUG", "True") == "False"
-ALLOWED_HOSTS = ["books-room.onrender.com", "localhost", "127.0.0.1:8000"]
+# CoachHub/settings.py
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'books-room.onrender.com']
+
 
 # =========================
 # Installed apps
