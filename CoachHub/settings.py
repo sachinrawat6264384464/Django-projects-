@@ -1,40 +1,22 @@
 import os
-import dj_database_url
 from pathlib import Path
+import dj_database_url
 
+# =========================
+# Base directory
+# =========================
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Secret Key
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "fallback-secret")
-
-# DEBUG
+# =========================
+# Security
+# =========================
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "c2e6e1c108011290a3566bf7854d63bd")
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
+ALLOWED_HOSTS = ["books-room.onrender.com", "localhost", "127.0.0.1"]
 
-# Allowed hosts
-ALLOWED_HOSTS = ["books-room.onrender.com"]  # Render URL
-
-# DATABASES: Supabase remote Postgres
-DATABASES = {
-    'default': dj_database_url.config(
-        default=f"postgres://{os.getenv('DB_USER','postgres')}:" \
-                f"{os.getenv('DB_PASSWORD','YOUR_PASSWORD')}@" \
-                f"{os.getenv('DB_HOST','db.odbrncozvpukbshkwyvp.supabase.co')}:" \
-                f"{os.getenv('DB_PORT','5432')}/" \
-                f"{os.getenv('DB_NAME','postgres')}",
-        conn_max_age=600,
-        ssl_require=True  # SSL required for Supabase
-    )
-}
-
-# Static files
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]  # Dev
-STATIC_ROOT = BASE_DIR / "staticfiles"    # Production
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media"
-
-# Installed apps & middleware (same as before)
+# =========================
+# Installed apps
+# =========================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,9 +24,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'EduTrack',
+    'EduTrack',  # tumhara app
 ]
 
+# =========================
+# Middleware
+# =========================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,6 +40,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# =========================
+# URLs & WSGI
+# =========================
 ROOT_URLCONF = 'CoachHub.urls'
 
 TEMPLATES = [
@@ -75,5 +63,55 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'CoachHub.wsgi.application'
 
+# =========================
+# Database (Supabase Postgres)
+# =========================
+DATABASES = {
+    'default': dj_database_url.config(
+        default="postgresql://postgres:sa6264384464@db.odbrncozvpukbshkwyvp.supabase.co:5432/postgres",
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+# =========================
+# Password validation
+# =========================
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# =========================
+# Internationalization
+# =========================
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Asia/Kolkata'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+# =========================
+# Static & Media files
+# =========================
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]       # dev
+STATIC_ROOT = BASE_DIR / "staticfiles"        # production
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
+
+# =========================
 # Default primary key
+# =========================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
