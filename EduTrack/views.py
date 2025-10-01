@@ -4,6 +4,8 @@ from django.db import IntegrityError
 from django.contrib import messages
 
 # -------- User Signup --------
+
+
 def signup(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -26,13 +28,14 @@ def signup(request):
                 address=address,
                 username=username
             )
-            user.set_password(password)  # 🔑 Hash password
+            user.set_password(password)  # ✅ ye aapke model ka method call karega
             user.save()
             return render(request, 'signup.html', {'success': 'User registered successfully!'})
         except IntegrityError:
             return render(request, 'signup.html', {'error': 'DB error, try again'})
 
     return render(request, 'signup.html')
+
 
 # -------- User Login --------
 def login(request):
