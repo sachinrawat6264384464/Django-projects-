@@ -25,12 +25,16 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 # =========================
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgresql://postgres:NJmNqYrfkSQnoNEPIREPerAMznnEKWIf@interchange.proxy.rlwy.net:37784/railway",
-        conn_max_age=600,
-        ssl_require=False,  # Agar SSL error aaye to ise False rakho
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',  # Railway DB ka name
+        'USER': 'postgres', # Railway DB ka user
+        'PASSWORD': 'NJmNqYrfkSQnoNEPIREPerAMznnEKWIf',  # Railway DB password
+        'HOST': 'interchange.proxy.rlwy.net',  # Railway DB host
+        'PORT': '37784',  # Railway DB port
+    }
 }
+
 
 # =========================
 # Installed apps
