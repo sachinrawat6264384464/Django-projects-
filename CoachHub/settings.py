@@ -21,17 +21,17 @@ ALLOWED_HOSTS = ["*"]
 
 # CSRF Trusted Origins (Railway ke liye zaroori)
 CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-50fc0.up.railway.app'  # tumhara Railway web app URL
+    "https://web-production-50fc0.up.railway.app"
 ]
-# =========================
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',  # Railway DB ka name
-        'USER': 'postgres', # Railway DB ka user
-        'PASSWORD': 'NJmNqYrfkSQnoNEPIREPerAMznnEKWIf',  # Railway DB password
-        'HOST': 'interchange.proxy.rlwy.net',  # Railway DB host
-        'PORT': '37784',  # Railway DB port
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'NJmNqYrfkSQnoNEPIREPerAMznnEKWIf',
+        'HOST': 'interchange.proxy.rlwy.net',
+        'PORT': '37784',
     }
 }
 
@@ -54,18 +54,17 @@ INSTALLED_APPS = [
 # =========================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # static files ke liye
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # add this
-    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 # =========================
 # URLs & WSGI
 # =========================
@@ -112,8 +111,9 @@ USE_TZ = True
 # Static & Media files
 # =========================
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # tumhara local static folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   # collectstatic ke liye
+STATICFILES_DIRS = [BASE_DIR / 'static']  # local static folder
+STATIC_ROOT = BASE_DIR / 'staticfiles'    # collectstatic folder
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # =========================
 # Default primary key
