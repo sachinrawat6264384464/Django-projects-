@@ -6,16 +6,46 @@ from django.contrib import messages
 # -------- User Signup --------
 
 
+from django.shortcuts import render
+from EduTrack.models import UserRegistration
+
 def signup(request):
+    import traceback
+
     try:
         if request.method == 'POST':
             name = request.POST.get('name')
-            ...
-           
+            mobile = request.POST.get('mobile')
+            address = request.POST.get('address')
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            confirm_password = request.POST.get('confirm_password')
+
+            # Password confirm check
+            if password != confirm_password:
+                return render(request, 'signup.html', {'error': 'Passwords do not match'})
+
+            # Duplicate username check
+            if UserRegistration.objects.filter(username=username).exists():
+                return render(request, 'signup.html', {'error': 'Username already taken'})
+
+            # User create
+            user = UserRegistration(
+                name=name,
+                mobile=mobile,
+                address=address,
+                username=username
+            )
+            user.set_password(password)  # Hash password
+            user.save()
+
             return render(request, 'signup.html', {'success': 'User registered successfully!'})
+
+        # GET request
         return render(request, 'signup.html')
+
     except Exception as e:
-        import traceback
+        # Print full traceback in console for debugging
         print(traceback.format_exc())
         return render(request, 'signup.html', {'error': f'Unexpected error: {str(e)}'})
 
