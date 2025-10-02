@@ -1,1 +1,1 @@
-web: gunicorn CoachHub.wsgi
+web: gunicorn CoachHub.wsgi --log-file -
