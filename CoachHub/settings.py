@@ -11,28 +11,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 # Security
 # =========================
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme-secret-key")
-DJANGO_DEBUG= True
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
+
 ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app", "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
 # =========================
 # Database (Railway PostgreSQL)
 
 # CSRF Trusted Origins (Railway ke liye zaroori)
-CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-50fc0.up.railway.app"
-]
+
+import dj_database_url
+import os
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'NJmNqYrfkSQnoNEPIREPerAMznnEKWIf',
-        'HOST': 'interchange.proxy.rlwy.net',
-        'PORT': '37784',
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,  # optional, connection pooling
+        ssl_require=True   # Railway me SSL mandatory hota hai
+    )
 }
+
 
 
 # =========================
