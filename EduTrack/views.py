@@ -6,36 +6,18 @@ from django.contrib import messages
 # -------- User Signup --------
 
 
-
 def signup(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        mobile = request.POST.get('mobile')
-        address = request.POST.get('address')
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-
-        if password != confirm_password:
-            return render(request, 'signup.html', {'error': 'Passwords do not match'})
-
-        if UserRegistration.objects.filter(username=username).exists():
-            return render(request, 'signup.html', {'error': 'Username already taken'})
-
-        try:
-            user = UserRegistration(
-                name=name,
-                mobile=mobile,
-                address=address,
-                username=username
-            )
-            user.set_password(password)
-            user.save()
+    try:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            ...
+           
             return render(request, 'signup.html', {'success': 'User registered successfully!'})
-        except:
-            return render(request, 'signup.html', {'error': 'DB error, try again'})
-
-    return render(request, 'signup.html')
+        return render(request, 'signup.html')
+    except Exception as e:
+        import traceback
+        print(traceback.format_exc())
+        return render(request, 'signup.html', {'error': f'Unexpected error: {str(e)}'})
 
 # -------- User Login --------
 def login(request):
