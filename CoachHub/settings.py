@@ -12,12 +12,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security
 # =========================
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme-secret-key")
-DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
+DJANGO_DEBUG= True
 
 # Allowed Hosts
-ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["*"]
 # =========================
 # Database (Railway PostgreSQL)
+
+# CSRF Trusted Origins (Railway ke liye zaroori)
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-50fc0.up.railway.app'  # tumhara Railway web app URL
+]
 # =========================
 DATABASES = {
     "default": dj_database_url.config(
