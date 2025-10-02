@@ -6,6 +6,8 @@ from django.contrib import messages
 # -------- User Signup --------
 
 
+
+
 def signup(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -15,27 +17,31 @@ def signup(request):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
+        # Password match check
         if password != confirm_password:
             return render(request, 'signup.html', {'error': 'Passwords do not match'})
 
+        # Username uniqueness check
         if UserRegistration.objects.filter(username=username).exists():
             return render(request, 'signup.html', {'error': 'Username already taken'})
 
         try:
+            # Simple user creation
             user = UserRegistration(
                 name=name,
                 mobile=mobile,
                 address=address,
-                username=username
+                username=username,
+                password=password  # Agar simple model hai, directly store karo
             )
-            user.set_password(password)  # ✅ ye aapke model ka method call karega
             user.save()
             return render(request, 'signup.html', {'success': 'User registered successfully!'})
+
         except IntegrityError:
-            return render(request, 'signup.html', {'error': 'DB error, try again'})
+            return render(request, 'signup.html', {'error': 'Database error, try again'})
 
+    # GET request – signup page load
     return render(request, 'signup.html')
-
 
 # -------- User Login --------
 def login(request):
