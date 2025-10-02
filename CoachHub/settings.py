@@ -10,15 +10,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 # Security
 # =========================
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "c2e6e1c108011290a3566bf7854d63bd")
-DEBUG = os.getenv("DJANGO_DEBUG", "True") == "True"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme-secret-key")
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
-# CoachHub/settings.py
+# Allowed Hosts
+ALLOWED_HOSTS = [
+    "exquisite-emotion.up.railway.app",  # apna Railway domain
+    "localhost",
+    "127.0.0.1",
+]
 
-
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'books-room.onrender.com']
-
-
+# =========================
+# Database (Railway PostgreSQL)
+# =========================
+DATABASES = {
+    "default": dj_database_url.config(
+        default="postgresql://postgres:NJmNqYrfkSQnoNEPIREPerAMznnEKWIf@interchange.proxy.rlwy.net:37784/railway",
+        conn_max_age=600,
+        ssl_require=False,  # Agar SSL error aaye to ise False rakho
+    )
+}
 
 # =========================
 # Installed apps
@@ -30,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'EduTrack',  # tumhara app
+    'EduTrack',
 ]
 
 # =========================
@@ -70,34 +81,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'CoachHub.wsgi.application'
 
 # =========================
-# Database (Supabase Postgres)
-# =========================
-
-import dj_database_url
-import os
-import dj_database_url
-import os
-
-DATABASES = {
-    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
-}
-
-# =========================
 # Password validation
 # =========================
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # =========================
@@ -112,11 +102,9 @@ USE_TZ = True
 # =========================
 # Static & Media files
 # =========================
-from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # extra static folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # =========================
 # Default primary key
