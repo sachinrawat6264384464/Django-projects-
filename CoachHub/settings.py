@@ -13,7 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret")
-ALLOWED_HOSTS = ["*", "web-production-50fc0.up.railway.app"]
+ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app", "127.0.0.1", "localhost"]
+
 
 CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
@@ -26,9 +27,7 @@ DATABASES = {
     'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
 
-DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret")
-ALLOWED_HOSTS = ["*", "yourapp.herokuapp.com"]
+
 
 # =========================
 # Installed apps
