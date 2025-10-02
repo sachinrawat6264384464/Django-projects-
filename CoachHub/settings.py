@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import dj_database_url
+CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
 # =========================
 # Base directory
