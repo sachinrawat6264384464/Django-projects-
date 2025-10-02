@@ -14,12 +14,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme-secret-key")
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
 # Allowed Hosts
-ALLOWED_HOSTS = [
-    "exquisite-emotion.up.railway.app",  # apna Railway domain
-    "localhost",
-    "127.0.0.1",
-]
-
+ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app", "127.0.0.1", "localhost"]
 # =========================
 # Database (Railway PostgreSQL)
 # =========================
