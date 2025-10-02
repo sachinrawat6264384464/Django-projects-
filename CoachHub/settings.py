@@ -13,9 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme-secret-key")
 DJANGO_DEBUG= True
+ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app", "127.0.0.1", "localhost"]
 
-# Allowed Hosts
-ALLOWED_HOSTS = ["*"]
 # =========================
 # Database (Railway PostgreSQL)
 
