@@ -1,31 +1,56 @@
 import os
 from pathlib import Path
 import dj_database_url
+BASE_DIR = Path(__file__).resolve().parent.parent
 CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
 # =========================
 # Base directory
 # =========================
-BASE_DIR = Path(__file__).resolve().parent.parent
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret-key")
 
-# =========================
-# Security
-# =========================
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret")
-ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app", "127.0.0.1", "localhost"]
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "web-production-50fc0.up.railway.app",  # apna Railway URL
+    ".herokuapp.com",                       # agar Heroku use ho raha hai
+]
+
+# Database config (env se load karega)
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
+
+# Static files (WhiteNoise ke liye)
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Installed apps me whitenoise add karna
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # <- Ye zaroor ho
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
 
 
-CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
+
 
 # =========================
 # Database (Railway PostgreSQL)
 
 # CSRF Trusted Origins (Railway ke liye zaroori)
 
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
-}
 
 
 
@@ -45,16 +70,7 @@ INSTALLED_APPS = [
 # =========================
 # Middleware
 # =========================
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # static files ke liye
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+
 
 
 
@@ -106,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # local static folder
 STATIC_ROOT = BASE_DIR / 'staticfiles'    # collectstatic folder
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # =========================
 # Default primary key
