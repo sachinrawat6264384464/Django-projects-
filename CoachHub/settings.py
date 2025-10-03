@@ -7,8 +7,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 # Security
 # =========================
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret-key")
-DEBUG = False
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.getenv('SECRET_KEY', '5592b162-9434-457a-b56c-84dc3d81b41c')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
@@ -44,17 +48,13 @@ MIDDLEWARE = [
 # =========================
 
 
-
+import os
+import dj_database_url
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'NJmNqYrfkSQnoNEPIREPerAMznnEKWIf',
-        'HOST': 'interchange.proxy.rlwy.net',
-        'PORT': '37784',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
 }
 
 
