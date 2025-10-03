@@ -48,13 +48,15 @@ MIDDLEWARE = [
 # =========================
 
 
-import os
-import dj_database_url
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'railway'),
+        'USER': os.getenv('DB_USER', 'postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'NJmNqYrfkSQnoNEPIREPerAMznnEKWIf'),
+        'HOST': os.getenv('DB_HOST', 'interchange.proxy.rlwy.net'),
+        'PORT': os.getenv('DB_PORT', '37784'),
+    }
 }
 
 
