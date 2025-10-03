@@ -1,1 +1,1 @@
-web: gunicorn CoachHub.wsgi --log-file -
+gunicorn CoachHub.wsgi:application --bind 0.0.0.0:8080
