@@ -8,9 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security
 # =========================
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', '5592b162-9434-457a-b56c-84dc3d81b41c')
-
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app"]
@@ -47,16 +45,12 @@ MIDDLEWARE = [
 # Database (Railway PostgreSQL)
 # =========================
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'railway'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'NJmNqYrfkSQnoNEPIREPerAMznnEKWIf'),
-        'HOST': os.getenv('DB_HOST', 'interchange.proxy.rlwy.net'),
-        'PORT': os.getenv('DB_PORT', '37784'),
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
 }
 
 
