@@ -9,14 +9,10 @@ CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 # =========================
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret-key")
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "web-production-50fc0.up.railway.app",  # apna Railway URL
-    ".herokuapp.com",                       # agar Heroku use ho raha hai
-]
+ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app"]  # apna Railway URL
+                      # agar Heroku use ho raha hai]
 
 # Database config (env se load karega)
 DATABASES = {
