@@ -47,9 +47,16 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+import dj_database_url
+import os
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')
+    'default': dj_database_url.parse(
+        os.getenv(
+            'DATABASE_URL',
+            'postgres://postgres:NJmNqYrfkSQnoNEPIREPerAMznnEKWIf@interchange.proxy.rlwy.net:37784/railway'
+        ),
+        conn_max_age=600
     )
 }
 
