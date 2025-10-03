@@ -50,7 +50,7 @@ def signup(request):
         return render(request, 'signup.html', {'error': f'Unexpected error: {str(e)}'})
 
 # -------- User Login --------
-def login(request):
+def login_pp(request):
     if request.method == "POST":
         username = request.POST.get('username').strip()
         password = request.POST.get('password')
