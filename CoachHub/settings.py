@@ -1,55 +1,16 @@
 import os
 from pathlib import Path
 import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
 # =========================
-# Base directory
+# Security
 # =========================
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "fallback-secret-key")
-
 DEBUG = False
-
-ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app"]  # apna Railway URL
-                      # agar Heroku use ho raha hai]
-
-# Database config (env se load karega)
-DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
-
-# Static files (WhiteNoise ke liye)
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# Installed apps me whitenoise add karna
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Ye add karo
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-
-
-
-
-# =========================
-# Database (Railway PostgreSQL)
-
-# CSRF Trusted Origins (Railway ke liye zaroori)
-
-
-
+ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
 # =========================
 # Installed apps
@@ -67,8 +28,30 @@ INSTALLED_APPS = [
 # =========================
 # Middleware
 # =========================
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise for static files
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
+# =========================
+# Database (Railway PostgreSQL)
+# =========================
+import dj_database_url
+import os
 
+DATABASES = {
+    "default": dj_database_url.parse(
+        os.environ.get("DATABASE_URL", "postgresql://postgres:NJmNqYrfkSQnoNEPIREPerAMznnEKWIf@interchange.proxy.rlwy.net:37784/railway"),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
 
 
 # =========================
@@ -114,12 +97,12 @@ USE_L10N = True
 USE_TZ = True
 
 # =========================
-# Static & Media files
+# Static files (production ready)
 # =========================
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # local static folder
-STATIC_ROOT = BASE_DIR / 'staticfiles'    # collectstatic folder
-
+STATICFILES_DIRS = [BASE_DIR / 'static']        # local static folder
+STATIC_ROOT = BASE_DIR / 'staticfiles'         # collectstatic folder
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # =========================
 # Default primary key
