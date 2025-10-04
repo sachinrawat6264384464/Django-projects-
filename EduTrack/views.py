@@ -51,7 +51,7 @@ def signup(request):
 
 # -------- User Login --------
 # -------- User Login --------
-def login_view(request):
+def fuk_view(request):
     if request.method == "POST":
         username = request.POST.get('username').strip()
         password = request.POST.get('password')
@@ -59,7 +59,7 @@ def login_view(request):
         try:
             user = UserRegistration.objects.get(username=username)
         except UserRegistration.DoesNotExist:
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'fuk.html', {'error': 'Invalid username or password'})
 
         if user.check_password(password):
             request.session['user_id'] = user.id
@@ -67,9 +67,9 @@ def login_view(request):
             request.session['is_admin'] = False
             return redirect('home')
         else:
-            return render(request, 'login.html', {'error': 'Invalid username or password'})
+            return render(request, 'fuk.html', {'error': 'Invalid username or password'})
 
-    return render(request, 'login.html')
+    return render(request, 'fuk.html')
 
 
 # -------- Admin Login --------
