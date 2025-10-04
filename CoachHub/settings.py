@@ -9,9 +9,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # =========================
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-secret-key')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app"]
+
+ALLOWED_HOSTS = ["web-production-50fc0.up.railway.app", "127.0.0.1", "localhost"]
+
 CSRF_TRUSTED_ORIGINS = ["https://web-production-50fc0.up.railway.app"]
 
 # =========================
