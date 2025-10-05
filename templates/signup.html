@@ -23,6 +23,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     width: 350px;
+    display: grid;
 }
 .form h2 {
     text-align: center;
@@ -50,6 +51,28 @@ body {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    display: grid;
+}
+@media (max-width: 450px) {
+    .form{
+    display: grid;
+    width: 70vw;
+    height: 50vh;
+    
+    }
+    .form input{
+    padding: 10px;
+    margin: 2px;
+    position: relative;
+    bottom: 10%;
+    }
+    .form h2{
+    position: relative;
+    bottom:26%;
+    }
+    p{
+    margin-bottom: 3%;
+    }
 }
 .form button:hover {
     background: #05d689;
